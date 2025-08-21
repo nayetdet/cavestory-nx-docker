@@ -1,0 +1,12 @@
+services:
+  debian:
+    build:
+      context: docker/cavestory-nx
+      dockerfile: Dockerfile
+      args:
+        TIGER_VNC_PASSWORD: password
+    container_name: debian
+    tty: true
+    ports:
+      - "5901:5901"
+      - "8080:8080"
