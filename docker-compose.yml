@@ -5,7 +5,7 @@ services:
       dockerfile: Dockerfile
       args:
         TIGER_VNC_PASSWORD: password
-    container_name: debian
+    container_name: cavestory-nx
     tty: true
     ports:
       - "5901:5901"
