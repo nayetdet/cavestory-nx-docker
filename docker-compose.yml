@@ -1,8 +1,5 @@
 services:
   cavestory:
-    # build:
-    #   context: .
-    #   dockerfile: docker/Dockerfile
     image: ghcr.io/nayetdet/cavestory-nx-docker:latest
     init: true
     ports:

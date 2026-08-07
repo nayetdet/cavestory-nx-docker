@@ -10,7 +10,7 @@ docker compose up --build
 
 Open <http://localhost:8081>.
 
-Saves are stored in the `cavestory-saves` Docker volume.
+Saves are stored in the `cavestory-data` Docker volume.
 
 ## Checks
 
