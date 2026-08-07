@@ -1,0 +1,31 @@
+# Nix
+/result
+/result-*
+/.direnv/
+.envrc
+
+# Local caches and tooling
+/.cache/
+/.venv/
+/.idea/
+/.vscode/
+.coverage
+.pytest_cache/
+.mypy_cache/
+
+# OS and editor files
+.DS_Store
+*.log
+*.swp
+*~
+
+# Cave Story build artifacts
+docker/submodules/cavestory-nx/build/
+docker/submodules/cavestory-nx/cavestory-nx
+docker/submodules/cavestory-nx/CMakeFiles/
+docker/submodules/cavestory-nx/CMakeCache.txt
+docker/submodules/cavestory-nx/cmake_install.cmake
+
+# Docker artifacts
+docker/*.tar
+docker/*.tar.gz

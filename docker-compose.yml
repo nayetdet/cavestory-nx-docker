@@ -1,0 +1,15 @@
+services:
+  cavestory:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    ports:
+      - "8081:8081"
+    volumes:
+      - cavestory-data:/home/ubuntu
+    environment:
+      DISPLAY_SIZEW: "1280"
+      DISPLAY_SIZEH: "720"
+
+volumes:
+  cavestory-data:

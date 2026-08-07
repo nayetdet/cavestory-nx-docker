@@ -1,0 +1,29 @@
+# Git metadata and local tooling
+.git
+.gitmodules
+**/.git
+**/.gitmodules
+.pre-commit-config.yaml
+.gitignore
+
+# Project documentation and local orchestration files
+README.md
+Makefile
+shell.nix
+docker-compose.yml
+
+# Build artifacts
+**/build
+**/CMakeFiles
+**/CMakeCache.txt
+**/cmake_install.cmake
+**/Makefile
+**/*.o
+**/*.a
+**/*.so
+
+# Editor and OS files
+**/.DS_Store
+**/.idea
+**/.vscode
+**/*.swp
