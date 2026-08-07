@@ -1,0 +1,3 @@
+[submodule "submodules/cavestory-nx"]
+	path = submodules/cavestory-nx
+	url = https://github.com/coringao/cavestory-nx
