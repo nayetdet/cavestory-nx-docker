@@ -18,7 +18,7 @@ RUN cmake -S . -B build -DCMAKE_BUILD_TYPE=Release \
     && test -x cavestory-nx
 
 # Runtime Stage
-FROM ghcr.io/linuxserver/baseimage-selkies:debiantrixie AS runtime
+FROM lsiobase/selkies:debiantrixie AS runtime
 USER root
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
