@@ -39,7 +39,6 @@ jobs:
           images: ${{ env.REGISTRY }}/${{ github.repository }}
           tags: |
             type=raw,value=latest
-            type=raw,value=sha-${{ github.sha }}
 
       - name: Build and Push
         uses: docker/build-push-action@v7
@@ -64,5 +63,5 @@ jobs:
         with:
           package-name: ${{ github.event.repository.name }}
           package-type: container
-          min-versions-to-keep: 5
+          min-versions-to-keep: 1
           delete-only-untagged-versions: false
