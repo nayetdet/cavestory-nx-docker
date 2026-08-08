@@ -1,9 +1,9 @@
 #!/bin/sh
 set -eu
 
-/etc/container-entrypoint.sh &
+/init &
 
-until pgrep -x selkies >/dev/null 2>&1; do
+until pgrep -f 'selkies|pixelflux' >/dev/null 2>&1; do
     sleep 1
 done
 

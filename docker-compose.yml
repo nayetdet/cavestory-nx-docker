@@ -8,7 +8,7 @@ services:
     ports:
       - "3939:3939"
     volumes:
-      - cavestory-data:/home/ubuntu
+      - cavestory-data:/config
 
 volumes:
   cavestory-data:
