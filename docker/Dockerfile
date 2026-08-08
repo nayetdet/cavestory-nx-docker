@@ -17,6 +17,7 @@ COPY docker/patches/default-settings.patch /tmp/default-settings.patch
 RUN patch -p1 < /tmp/default-settings.patch \
     && rm /tmp/default-settings.patch
 
+# hadolint ignore=DL3059
 RUN cmake -S . -B build -DCMAKE_BUILD_TYPE=Release \
     && cmake --build build --parallel \
     && test -x cavestory-nx
@@ -32,6 +33,7 @@ RUN apt-get update \
 COPY --chown=abc:abc --from=build /src/cavestory-nx/cavestory-nx /opt/cavestory/cavestory-nx
 COPY --chown=abc:abc --from=build /src/cavestory-nx/data /opt/cavestory/data
 COPY --chmod=0755 docker/scripts/entrypoint.sh /etc/services.d/cavestory/run
+
 COPY docker/assets/fullscreen.css /usr/share/selkies/selkies-dashboard/assets/fullscreen.css
 RUN sed -i 's#</head>#<link rel="stylesheet" href="./assets/fullscreen.css"></head>#' /usr/share/selkies/selkies-dashboard/index.html
 
