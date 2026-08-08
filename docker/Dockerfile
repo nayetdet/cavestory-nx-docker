@@ -32,7 +32,7 @@ RUN apt-get update \
 
 COPY --chown=abc:abc --from=build /src/cavestory-nx/cavestory-nx /opt/cavestory/cavestory-nx
 COPY --chown=abc:abc --from=build /src/cavestory-nx/data /opt/cavestory/data
-COPY --chmod=0755 docker/scripts/entrypoint.sh /etc/services.d/cavestory/run
+COPY --chmod=0755 docker/scripts/cavestory.sh /etc/services.d/cavestory/run
 
 COPY docker/assets/fullscreen.css /usr/share/selkies/selkies-dashboard/assets/fullscreen.css
 RUN sed -i 's#</head>#<link rel="stylesheet" href="./assets/fullscreen.css"></head>#' /usr/share/selkies/selkies-dashboard/index.html
@@ -65,6 +65,7 @@ ENV DISPLAY=:20 \
     SELKIES_ENABLE_PLAYER4=false \
     SELKIES_ENABLE_RESIZE=false \
     SELKIES_UI_SHOW_SIDEBAR=false \
+    SELKIES_UI_SHOW_LOGO=false \
     SELKIES_UI_SHOW_CORE_BUTTONS=false \
     SELKIES_UI_SIDEBAR_SHOW_VIDEO_SETTINGS=false \
     SELKIES_UI_SIDEBAR_SHOW_SCREEN_SETTINGS=false \

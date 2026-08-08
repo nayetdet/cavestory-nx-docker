@@ -1,6 +1,9 @@
 #!/command/with-contenv bash
 set -eu
 
+mkdir -p /config/.local/share/cavestory-nx
+chown -R abc:abc /config/.local/share/cavestory-nx
+
 until pgrep -f 'selkies|pixelflux' >/dev/null 2>&1; do
     sleep 1
 done
