@@ -1,14 +1,14 @@
-# Cave Story NX
+# Cave Story NX in Docker
 
-Cave Story NX running in the browser with Selkies, including audio and keyboard/mouse input.
+A browser-ready Docker image for Cave Story NX that lets you play from any modern web browser while keeping your saves between sessions.
 
 ## Run
 
 ```bash
-docker compose up --build
+docker compose up -d
 ```
 
-Open <http://localhost:8081>.
+Open <http://localhost:3939>.
 
 Saves are stored in the `cavestory-data` Docker volume.
 
