@@ -1,9 +1,7 @@
-#!/bin/sh
+#!/command/with-contenv bash
 set -eu
 
-/init &
-
-until pgrep -f 'selkies|pixelflux' >/dev/null 2>&1; do
+until pgrep -f '/lsiopy/bin/.*selkies' >/dev/null 2>&1; do
     sleep 1
 done
 
@@ -15,4 +13,4 @@ if [ -f "$settings_file" ] && [ "$(dd if="$settings_file" bs=1 count=4 2>/dev/nu
     printf '\1' | dd of="$settings_file" bs=1 seek=14 conv=notrunc status=none
 fi
 
-exec /opt/cavestory/cavestory-nx
+exec s6-setuidgid abc /opt/cavestory/cavestory-nx

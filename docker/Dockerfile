@@ -19,7 +19,6 @@ RUN cmake -S . -B build -DCMAKE_BUILD_TYPE=Release \
 
 # Runtime Stage
 FROM lsiobase/selkies:debiantrixie AS runtime
-USER root
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
         libsdl2-2.0-0 \
@@ -28,15 +27,14 @@ RUN apt-get update \
 
 COPY --chown=abc:abc --from=build /src/cavestory-nx/cavestory-nx /opt/cavestory/cavestory-nx
 COPY --chown=abc:abc --from=build /src/cavestory-nx/data /opt/cavestory/data
-COPY --chmod=0755 docker/scripts/entrypoint.sh /usr/local/bin/cavestory-entrypoint
+COPY --chmod=0755 docker/scripts/entrypoint.sh /etc/services.d/cavestory/run
 COPY docker/assets/fullscreen.css /usr/share/selkies/selkies-dashboard/assets/fullscreen.css
 RUN sed -i 's#</head>#<link rel="stylesheet" href="./assets/fullscreen.css"></head>#' /usr/share/selkies/selkies-dashboard/index.html
 
 ENV DISPLAY=:20 \
     SDL_RENDER_DRIVER=software \
     START_LXQT=false \
-    CUSTOM_PORT=3939 \
-    SELKIES_PORT=3939 \
+    CUSTOM_WS_PORT=8082 \
     SELKIES_ENCODER=jpeg \
     SELKIES_FRAMERATE=50-50 \
     SELKIES_ENABLE_BASIC_AUTH=false \
@@ -48,8 +46,6 @@ ENV DISPLAY=:20 \
     HOME=/config
 
 VOLUME ["/config"]
-EXPOSE 3939
-
+EXPOSE 3000
 WORKDIR /opt/cavestory
-USER abc
-ENTRYPOINT ["/usr/local/bin/cavestory-entrypoint"]
+ENTRYPOINT ["/init"]

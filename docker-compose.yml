@@ -4,9 +4,8 @@ services:
       context: .
       dockerfile: docker/Dockerfile
     image: ghcr.io/nayetdet/cavestory-nx-docker:latest
-    init: true
     ports:
-      - "3939:3939"
+      - "3000:3000"
     volumes:
       - cavestory-data:/config
 
