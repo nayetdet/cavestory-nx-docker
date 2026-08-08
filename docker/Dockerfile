@@ -13,6 +13,10 @@ RUN apt-get update \
 
 WORKDIR /src/cavestory-nx
 COPY docker/submodules/cavestory-nx/ ./
+COPY docker/patches/default-settings.patch /tmp/default-settings.patch
+RUN patch -p1 < /tmp/default-settings.patch \
+    && rm /tmp/default-settings.patch
+
 RUN cmake -S . -B build -DCMAKE_BUILD_TYPE=Release \
     && cmake --build build --parallel \
     && test -x cavestory-nx
@@ -42,10 +46,8 @@ ENV DISPLAY=:20 \
     SELKIES_UI_SHOW_SIDEBAR=false\|locked \
     SELKIES_IS_MANUAL_RESOLUTION_MODE=true\|locked \
     SELKIES_MANUAL_WIDTH=1366 \
-    SELKIES_MANUAL_HEIGHT=768 \
-    HOME=/config
+    SELKIES_MANUAL_HEIGHT=768
 
-VOLUME ["/config"]
 EXPOSE 3000
 WORKDIR /opt/cavestory
 ENTRYPOINT ["/init"]

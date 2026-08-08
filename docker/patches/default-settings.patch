@@ -1,0 +1,10 @@
+--- a/src/settings.cpp
++++ b/src/settings.cpp
+@@ -74,6 +74,6 @@
+ 		memset(setfile, 0, sizeof(Settings));
+-		setfile->resolution = 2;		// 640x480 Windowed, should be safe value
++		setfile->resolution = 8;		// 1366x768 fullscreen, suitable for the browser display
+ 		setfile->last_save_slot = 0;
+ 		setfile->multisave = true;
+-		setfile->fullscreen = false;
++		setfile->fullscreen = true;
