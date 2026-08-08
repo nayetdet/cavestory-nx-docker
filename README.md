@@ -8,9 +8,7 @@ A browser-ready Docker image for Cave Story NX that lets you play from any moder
 docker compose up -d
 ```
 
-Open <http://localhost:3939>.
-
-Saves are stored in the `cavestory-data` Docker volume.
+Open <http://localhost:3000>.
 
 ## Checks
 

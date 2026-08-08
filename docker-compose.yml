@@ -6,8 +6,23 @@ services:
     image: ghcr.io/nayetdet/cavestory-nx-docker:latest
     ports:
       - "3000:3000"
+    mem_limit: 1g
+    cpus: 2.0
+    pids_limit: 256
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - MKNOD
+      - NET_ADMIN
+      - NET_RAW
+      - SYS_ADMIN
+      - SYS_MODULE
+      - SYS_PTRACE
+      - SYS_RAWIO
+    tmpfs:
+      - /config
     volumes:
-      - cavestory-data:/config
+      - cavestory-data:/config/.local/share/cavestory-nx
 
 volumes:
   cavestory-data:
