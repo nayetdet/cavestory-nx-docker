@@ -34,7 +34,6 @@ RUN sed -i 's#</head>#<link rel="stylesheet" href="./assets/fullscreen.css"></he
 ENV DISPLAY=:20 \
     SDL_RENDER_DRIVER=software \
     START_LXQT=false \
-    CUSTOM_WS_PORT=8082 \
     SELKIES_ENCODER=jpeg \
     SELKIES_FRAMERATE=50-50 \
     SELKIES_ENABLE_BASIC_AUTH=false \
