@@ -1,5 +1,5 @@
 # Build Stage
-FROM ubuntu:24.04 AS builder
+FROM ubuntu:24.04 AS build
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
@@ -26,24 +26,27 @@ RUN apt-get update \
         libsdl2-mixer-2.0-0 \
     && rm -rf /var/lib/apt/lists/*
 
-COPY --from=builder /src/cavestory-nx/cavestory-nx /opt/cavestory/cavestory-nx
-COPY --from=builder /src/cavestory-nx/data /opt/cavestory/data
-COPY --chown=1000:1000 docker/scripts/entrypoint.sh /usr/local/bin/cavestory-entrypoint
-RUN chmod 0755 /usr/local/bin/cavestory-entrypoint \
-    && chown -R 1000:1000 /opt/cavestory
+COPY --chown=1000:1000 --from=build /src/cavestory-nx/cavestory-nx /opt/cavestory/cavestory-nx
+COPY --chown=1000:1000 --from=build /src/cavestory-nx/data /opt/cavestory/data
+COPY --chmod=0755 docker/scripts/entrypoint.sh /usr/local/bin/cavestory-entrypoint
+COPY docker/assets/fullscreen.css /usr/local/lib/python3.12/dist-packages/selkies/selkies_web/assets/fullscreen.css
+RUN sed -i 's#</head>#<link rel="stylesheet" href="./assets/fullscreen.css"></head>#' /usr/local/lib/python3.12/dist-packages/selkies/selkies_web/index.html
 
-ENV SELKIES_ENABLE_BASIC_AUTH=false \
-    SELKIES_ENABLE_RESIZE=false\|locked \
-    SELKIES_ENCODER=jpeg \
-    SELKIES_PORT=3939 \
+ENV DISPLAY=:20 \
+    SDL_RENDER_DRIVER=software \
     START_LXQT=false \
+    SELKIES_PORT=3939 \
+    SELKIES_ENCODER=jpeg \
+    SELKIES_ENABLE_BASIC_AUTH=false \
+    SELKIES_ENABLE_RESIZE=false\|locked \
+    SELKIES_UI_SHOW_SIDEBAR=false\|locked \
     SELKIES_IS_MANUAL_RESOLUTION_MODE=true\|locked \
-    SELKIES_MANUAL_WIDTH=1280 \
-    SELKIES_MANUAL_HEIGHT=720 \
-    SELKIES_UI_SHOW_SIDEBAR=false\|locked
+    SELKIES_MANUAL_WIDTH=1920 \
+    SELKIES_MANUAL_HEIGHT=1080
 
-WORKDIR /opt/cavestory
 VOLUME ["/home/ubuntu"]
 EXPOSE 3939
+
+WORKDIR /opt/cavestory
 USER 1000
 ENTRYPOINT ["/usr/local/bin/cavestory-entrypoint"]
