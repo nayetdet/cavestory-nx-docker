@@ -1,6 +1,6 @@
 # Cave Story NX in Docker
 
-A browser-ready Docker image for Cave Story NX that lets you play from any modern web browser while keeping your saves between sessions.
+A browser-ready Docker image for Cave Story NX. Play from any modern web browser while keeping your saves between sessions.
 
 ## Run
 
